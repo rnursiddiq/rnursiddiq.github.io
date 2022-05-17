@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Routing</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<header>
+    <div class="jumbotron">
+    <h1>Protocol Routing</h1>
+    </div>
+    <nav>
+    <ul>
+        <li><a href="#pengertian">Pengertian</a></li>
+        <li><a href="#jenis">Jenis</a></li>
+    </ul>
+</nav>
+</header>
+<main>
+<div id="content">
+    <article id="pengertian" class="card">
+        <h2 id="pengertian">Pengertian Protocol Routing</h2>
+       <p>Protokol Routing adalah protokol dalam jaringan komputer yang digunakan untuk membroadcast dan mempelajari jaringan yang terhubung dan mempelajari rute (network path) yang tersedia.</p>
+    </article>
+    <article id="jenis" class="card"> 
+       <h2 id="jenis">Jenis Protocol Routing</h2>
+       <p>Jenis - jenis protokol routing pun beragam, diantaranya: OSPF, RIP, BGP, IGRP, EIGRP, dan IS-IS. Bisa dibilang, semua protokol tersebut termasuk ke dalam routing dinamis. Seperti apa perbedaan dari tiap protokol tersebut? Pada artikel kali ini, kami akan membahasnya untuk Anda.</p>
+       <section>
+           <h3>1. RIP (Routing Information Protocol)</h3>
+           <p>RIP adalah protokol yang memberikan informasi routing table berdasarkan router yang terhubung langsung. Kemudian, router selanjutnya akan memberikan informasi ke router selanjutnya yang terhubung langsung dengan router tersebut. Adapun informasi yang diberikan dalam protokol RIP adalah: host, network, subnet, dan route default.</p>
+           <p>Protokol ini menggunakan algoritma “distance vector”. Metric yang dilakukan pada protokol ini berdasarkan hop count untuk pemilihan jalur terbaik. Jika hop count lebih dari 15, maka paket datagram akan dibuang dan tidak diteruskan. Update routing table pada protokol ini akan dilakukan secara broadcast setiap 30 detik. Macam-macam routing protokol RIP ini terbagi menjadi dua bagian, yaitu :</p>
+           <h3>RIP v1 (RIP versi 1)</h3>
+           <ul>
+            <li>Hanya mendukung routing class-full.</li>
+            <li>Tidak ada info subnet yang dimasukkan dalam data perbaikan routing.</li>
+            <li>Tidak mendukung VLSM (Variabel Length Subnet Mask).</li>
+            <li>Adanya fitur perbaikan routing broadcast.</li>
+          </ul>
+          <h3>RIP v2 (RIP versi 2)</h3>
+          <ul>
+              <li>Mendukung routing class-full dan class-less.</li>
+              <li>Info subnet dimasukkan dalam data perbaikan routing.</li>
+              <li>Mendukung VLSM (Variabel Length Subnet Mask).</li>
+              <li>Ada fitur perbaikan routing multicast.</li>
+          </ul>
+          <p>Secara umum, RIP v2 tidak berbeda jauh dengan RIP v1. Perbedaan yang ada terlihat pada informasi yang diberikan antar router. Pada RIP v2, informasi yang dipertukarkan terdapat autentifikasi. Persamaan RIP v2 lainnya dengan RIP v1, yaitu :</p>
+          <ul>
+              <li>Distance Vector Routing Protocol.</li>
+              <li>Metric berupa hop count.</li>
+              <li>Max hop count adalah 15.</li>
+              <li>Menggunakan port 520.</li>
+              <li>Menjalankan auto summary secara default.</li>
+          </ul>
+          <p>Sedangkan perbedaan RIP v2 dengan RIP v1 sebagai berikut :</p>
+          <ul>
+              <li>RIP v2 bersifat class-less routing protocol, yang artinya RIP v2 menyertakan field SM dalam paket update yang dikirimkan sehingga RIP v2 dapat mendukung VLSM & CIDR.</li>
+              <li>Mengirimkan paket update & menerima paket update versi 2.</li>
+              <li>Mengirimkan update ke alamat multicast yaitu 224.0.0.9</li>
+              <li>Auto Summary dapat dinonaktifkan.</li>
+              <li>Mendukung fungsi keamanan berupa authentication, yang dapat mencegah routing update dikirim / diterima dari sumber yang tidak terpercaya.</li>
+          </ul>
+          <p>Apa saja kelebihan dari protokol RIP? Berikut ini diantaranya :</p>
+          <ul>
+              <li>Menggunakan metode “Triggered Update”.</li>
+              <li>Memiliki timer untuk mengetahui kapan router harus kembali memberikan informasi routing.</li>
+              <li>Jika terjadi perubahan pada jaringan, sementara waktu pada timer belum habis, router tetap harus mengirimkan informasi routing karena dipicu oleh perubahan tersebut (triggered update).</li>
+              <li>Mengatur routing menggunakan RIP tidak rumit dan memberikan hasil yang cukup dapat diterima, terlebih jika jarang terjadi kegagalan link pada jaringan.</li>
+          </ul>
+          <p>Sedangkan, berikut ini adalah kekurangan dari RIP :</p>
+          <ul>
+              <li>Jumlah host yang terbatas.</li>
+              <li>Ketika pertama kali dijalankan, RIP hanya mengetahui cara routing ke dirinya sendiri (informasi lokal / localhost) dan tidak mengetahui topologi jaringan tempatnya berada.</li>
+          </ul>
+        </section>
+        <section>
+            <h3>2. IGRP (Interior Gateway Routing Protocol)</h3>
+            <P>IGRP adalah sebuah routing protocol yang dikembangkan oleh Cisco Systems Inc. pada pertengahan tahun 1980-an. Tujuan penciptaan IGRP adalah untuk menyediakan protokol yang kuat untuk routing dalam sistem otonomi. IGRP memiliki hop maksimum 255, tetapi default dari protokolnya sendiri adalah 100. IGRP menggunakan bandwidth dan garis menunda secara default untuk menentukan rute terbaik dalam sebuah interkoneksi (Composite Metric, yang terdiri atas bandwidth, load, delay dan reliability). Protokol ini menggunakan algoritma “distance vector”. Update routing pada protokol ini dilakukan secara broadcast setiap 90 detik.</P>
+            <P>Pada IGRP, routing dilakukan secara matematik berdasarkan jarak. Oleh karena itu, sistem IGRP sudah mempertimbangkan beberapa hal sebelum mengambil keputusan jalur mana yang akan ditempuh. Adapun hal yang harus diperhatikan tersebut adalah: load, delay, bandwitdh, realibility. Karena protocol ini diciptakan oleh Cisco, maka di dalam kumpulan perintah dasar Cisco terdapat perintah untuk mengatur protokol ini.</P>
+            <p>Berikut ini adalah kelebihan dari protokol IGRP :</p>
+            <ul>
+                <li>Mendukung sampai 255 hop count.</li>
+            </ul>
+            <p>Dan berikut ini adalah kekurangan dari protokol IGRP :</p>
+            <ul>
+                <li>Jumlah host yang terbatas.</li>
+                <li>Hanya bisa diterapkan pada router Cisco.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>3. OSPF (Open Short Path First)</h3>
+            <p>OSPF adalah sebuah routing protocol standar terbuka yang telah diaplikasikan oleh sejumlah vendor jaringan dan dijelaskan di RFC 2328. Protokol ini cocok diterapkan pada jaringan yang memiliki router yang berbeda-beda. COntohnya, jika jaringan komputer Anda memiliki banyak router, dan tidak semuanya adalah router Cisco, maka Anda tidak dapat menggunakan IGRP. jadi pilihan Anda tinggal RIP v1, RIP v2, atau OSPF. Jika jaringan yang dikelola adalah jaringan besar, maka OSPF adalah pilihan protokol satu-satunya agar semua router tersebut bisa melakukan routing.</p>
+
+            <p>OSPF bekerja dengan sebuah algoritma “link-state” yang disebut algoritma Dijkstra / SPF. Cara kerja dari protokol ini adalah: Pertama, sebuah “pohon” dengan jalur terpendek akan dibangun. Kemudian, routing table akan diisi dengan jalur-jalur terbaik yang dihasilkan dari “pohon” tersebut. OSPF hanya mendukung routing IP saja. Update routing table pada protokol ini dilakukan secara floaded saat terjadi perubahan topologi jaringan. Bisa dibilang, OSPF ini adalah route redistribution, yaitu sebuah layanan penerjemah antar routing protocol.</p>
+            <p>Berikut ini adalah kelebihan dari protokol OSPF :</p>
+            <ul>
+                <li>Tidak menghasilkan routing loop.</li>
+                <li>Mendukung penggunaan beberapa metrik sekaligus.</li>
+                <li>Bisa menghasilkan banyak jalur ke sebuah tujuan membagi jaringan yang besar mejadi beberapa area.</li>
+                <li>Waktu yang diperlukan untuk konvergen lebih cepat.</li>
+                <li>Dapat diterapkan di semua router merek apapun.</li>
+            </ul>
+            <p>Sedangkan berikut ini adalah kekurangan dari protokol OSPF :</p>
+            <ul>
+                <li>Membutuhkan basis data yang besar.</li>
+                <li>Lebih rumit.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>4. EIGRP (Enhanced Interior Gateway Routing Protocol)</h3>
+            <p>Protokol ini menggunakan algoritma “advanced distance vector” dan menggunakan “cost load balancing” yang tidak sama. Algoritma yang dipakai adalah kombinasi antara “distance vector” dan “link-state”, serta menggunakan Diffusing Update Algorithm (DUAL) untuk menghitung jalur terpendek.</p>
+            
+            <p>Distance vector protocol merawat satu set metric yang kompleks untuk jarak tempuh ke jaringan lainnya. Broadcast-broadcast EIGRP di-update setiap 90 detik ke semua router EIGRP yang berdekatan. Setiap update hanya memasukkan perubahan jaringan. EIGRP sangat cocok untuk diterapkan pada jaringan komputer yang besar. IGRP dan EIGRP sama-sama sudah mempertimbangkan masalah bandwitdh yang ada dan delay yang terjadi.</p>
+            <p>Apa saja sih kelebihan EIGRP? Ini dia diantaranya :</p>
+            <ul>
+                <li>Melakukan konvergensi secara tepat ketika menghindari loop.</li>
+                <li>Memerlukan lebih sedikit memori dan proses.</li>
+                <li>Adanya fitur “loop avoidance”.</li>
+            </ul>
+            <p>Melakukan konvergensi secara tepat ketika menghindari loop.</p>
+            <ul>
+                <li>Hanya dapat digunakan untuk Router Cisco.</li>
+            </ul>
+        </section>
+        <section>
+            <h3>5. BGP (Border Gateway Protocol)</h3>
+            <p>Sebagai routing protocol, BGP memiliki kemampuan untuk melakukan pengumpulan rute, pertukaran rute dan menentukan rute terbaik menuju ke sebuah lokasi dalam sebuah jaringan. Namun yang membedakan BGP dengan routing protocol lain adalah BGP termasuk ke dalam kategori routing protocol jenis Exterior Gateway Protocol (EGP).</p>
+            <p>Update informasi pada protokol ini akan dikirim melalui koneksi TCP. Protokol ini biasa digunakan sebagai koneksi antara ISP dengan ISP dan atau antara client dengan client lainnya. Dalam implementasinya, protokol ini digunakan untuk membuat rute dalam trafik internet di antara autonomous system.</p>
+            <p>Kelebihan dari protokol BGP ini adalah instalasi yang sangat sederhana. Sedangkan, kekurangan dari protokol ini adalah keterbatasan dalam mempergunakan topologi jaringan.</p>
+        </section>
+        <section>6. Intermediate System-to-Intermediate System (IS-IS)</section>
+        <p>IS-IS adalah protokol digunakan pada perangkat jaringan komputer yang berguna untuk menentukan jalur terbaik bagi datagram ketika diarahkan ke tujuan. Lebih lengkapnya didefinisikan dalam ISO / IEC 10589 2002 dalam desain referensi OSI.</p>
+    </article>
+</div>
+
+<aside>
+    <article class="profile card">
+    <header>
+    <h2>Creator</h2>
+    <figure>
+        <img class="foto-profile" src="assets/image/profil.jpg">
+    </figure>
+    </header>
+    <section>
+        <table>
+            <tr>
+                <th>Nama</th>
+                <td>Rozaan Shofwan Nursiddiq</td>
+            </tr>
+            <tr>
+                <th>Tanggal Lahir</th>
+                <td>02 Maret 2002</td>
+            </tr>
+            <tr>
+                <th>Profesi</th>
+                <td>Pelajar</td>
+            </tr>
+            <tr>
+            <th>Kota Asal</th>
+            <td>Sumedang</td>
+            </tr>
+        </table>
+    </section>
+    <ul class="social-media">
+        <a href="https://github.com/rnursiddiq"><li><img src="assets/image/github.png" alt="Github"></li></a>
+    </ul>
+    </article>
+    </aside>
+</main>
+<footer>
+    <p>Jaringan Komputer &#169; 2022, Rozaan Shofwan Nursiddiq</p>
+</footer>
+</body>
+</html>
